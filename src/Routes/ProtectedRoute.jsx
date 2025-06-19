@@ -1,9 +1,14 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../components/AuthContext';
+import { useAuth } from "../components/AuthContext";
 
-const ProtectedRoute = () => {
+
+const ProtectedRoute = ({ children }) => {
     const { isAuthenticated } = useAuth();
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+
+    if (isAuthenticated) {
+        window.location.href = "https://marketing-platform-sigma.vercel.app/";
+        return null;
+    }
+    return children;
 };
 
 export default ProtectedRoute;

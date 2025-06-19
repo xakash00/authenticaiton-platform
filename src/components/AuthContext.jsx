@@ -29,15 +29,13 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('isAuthenticated', 'true');
             toast.success(response?.data?.message)
             setIsAuthenticated(true);
-            // navigate("/")
-            window.location.href = "http://localhost:3000";
             return true;
         } catch (error) {
             toast.error(error?.message)
             console.log('Login failed:', error);
             return false;
         }
-    }, [navigate]);
+    }, []);
 
     const logout = useCallback(async () => {
         if (isLoggingOutRef.current) return; // Prevent recursive calls
